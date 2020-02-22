@@ -8,6 +8,8 @@
 
 - `自动化更新各个package中package.json版本`
 
+- `自动引入Package.json中name和版本号`
+
 - `编译代码头部version`
 ```js
 const banner = `
