@@ -4,8 +4,9 @@
   "description": "A rich-text editor for Vue & React",
   "main": "index.js",
   "scripts": {
-    "test": "test",
-    "build:packages": "node ./node_modules/@babel/node/bin/babel-node.js ./build/packages/build.js"
+    "start": "webpack-dev-server --config ./build/examples/dev.webpack.config.babel.js",
+    "build:packages": "node ./node_modules/@babel/node/bin/babel-node.js ./build/packages/build.js",
+    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,9 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup-plugin-uglify": "^6.0.4",
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   }
 }
