@@ -11,6 +11,9 @@
 - `自动引入Package.json中name和版本号`
 
 - `编译代码头部version`
+
+- `编辑器协同考虑段落标签添加字段`
+
 ```js
 const banner = `
     /*!
