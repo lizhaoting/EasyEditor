@@ -1,8 +1,8 @@
-# `EasyEditor`
+# EasyEditor
 A rich-text editor for Vue &amp; React base on Prosemirror
 
 
-## `EasyEditor-React`
+## EasyEditor-React
 
 #### Useage
 ```js
@@ -21,23 +21,23 @@ export default () => <EasyEditor {...options} />
 
 #### Props
 
-- `autoFocus` - Auto focus
+- autoFocus - Auto focus
 
-- `viewInstance` - Instance of prosemirror view
-    - `state` - Prosemirror state
+- viewInstance - Instance of prosemirror view
+    - state - Prosemirror state
 
-    - `focused` - Focus status
+    - focused - Focus status
 
-    - `dom` - Root DOM
+    - dom - Root DOM
 
-    - `dragging` - Draging Element
+    - dragging - Draging Element
 
-    - `lastClick` - Last click information
-        - `time` - The time stamp
-        - `x` - Position x of mouse
-        - `y` - Position y of mouse
-        - `type` - Single click or double click
+    - lastClick - Last click information
+        - time - The time stamp
+        - x - Position x of mouse
+        - y - Position y of mouse
+        - type - Single click or double click
     
-    - `editable` - Can editor or not
+    - editable - Can editor or not
 
-    - `......`
+    - ......
