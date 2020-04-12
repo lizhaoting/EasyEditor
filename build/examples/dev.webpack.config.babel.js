@@ -87,4 +87,12 @@ module.exports = {
             }
         ]
     },
+    devtool: 'source-map',
+    resolve: {
+        alias: {
+            'easy-editor-react': pathResolve('packages/easy-editor-react/src'),
+            'easy-editor-utils': pathResolve('packages/easy-editor-utils/src'),
+            'easy-editor-core': pathResolve('packages/easy-editor-core')
+        }
+    }
 }

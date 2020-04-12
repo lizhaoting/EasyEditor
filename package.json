@@ -33,6 +33,7 @@
     "css-loader": "^3.4.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "orderedmap": "^1.1.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "rollup": "^1.31.1",

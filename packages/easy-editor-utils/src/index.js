@@ -1,1 +1,1 @@
-console.log('easy-editor-utils');
+export { default as defaultOptions } from './default-options';
