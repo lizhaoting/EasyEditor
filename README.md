@@ -23,6 +23,23 @@ export default () => <EasyEditor {...options} />
 
 - autoFocus - Auto focus
 
+- injectEditableCSS - Inject editable mode CSS
+    - example
+        ```css
+        .ProseMirror {
+            outline: none
+        }
+        ```
+
+- injectPreviewCSS - Inject disabled mode CSS
+    - example
+        ```css
+        .ProseMirror {
+            outline: 1px solid #329FD9;
+        }
+        ```
+
+
 - viewInstance - Instance of prosemirror view
     - state - Prosemirror state
 

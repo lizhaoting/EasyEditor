@@ -1,4 +1,6 @@
 export default {
     autoFocus: false,
-    viewInstance: () => {}
+    viewInstance: () => {},
+    injectEditableCSS: '',
+    injectPreviewCSS: ''
 }
