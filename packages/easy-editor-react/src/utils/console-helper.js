@@ -1,0 +1,1 @@
+export const blue = text => console.log(`%c ${text}", "color: #329FD9`);

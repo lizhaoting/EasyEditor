@@ -6,6 +6,8 @@ import { EditorView } from "easy-editor-core/prosemirror-view";
 
 import { defaultOptions } from 'easy-editor-utils';
 
+import { injectCSS, removeStyleLink } from './utils';
+
 // let state = EditorState.create({schema})
 // let view = new EditorView(document.body, {state})
 
@@ -42,6 +44,10 @@ class EasyEditor extends React.Component {
         // })
     }
 
+    get editable() {
+        return this.view.editable;
+    }
+
     componentDidMount() {
         this.editorRef.current.appendChild(this.view.dom);
 
@@ -50,6 +56,14 @@ class EasyEditor extends React.Component {
 
         // exposed view instance
         if (this.options.viewInstance) this.props.viewInstance(this.view);
+
+        // inject css
+        if (this.options.injectEditableCSS || this.options.injectPreviewCSS) this.initCSS();
+    }
+
+    initCSS() {
+        if (this.editable) injectCSS(this.options.injectEditableCSS, 'injectCSSID');
+        else injectCSS(this.options.injectPreviewCSS, 'injectCSSID');
     }
 
     initState() {
@@ -60,6 +74,10 @@ class EasyEditor extends React.Component {
         return new EditorView(null, {
             state: this.state
         });
+    }
+
+    getEditable() {
+        return this.view.editable;
     }
 
     getHTML() {}

@@ -24,6 +24,8 @@ export default () => <EasyEditor {...options} />
 - autoFocus - Auto focus
 
 - injectEditableCSS - Inject editable mode CSS
+    - basic wrapper class name called ProseMirror
+
     - example
         ```css
         .ProseMirror {
