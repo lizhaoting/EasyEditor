@@ -5,7 +5,7 @@ import EasyEditor from 'easy-editor-react';
 const options = {
     autoFocus: true,
     viewInstance: (view) => {
-        console.log('react view', view);
+        // console.log('react view', view);
     },
     injectEditableCSS: `
         .ProseMirror {

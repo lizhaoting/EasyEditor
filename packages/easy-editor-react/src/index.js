@@ -8,8 +8,7 @@ import { defaultOptions } from 'easy-editor-utils';
 
 import { injectCSS, removeStyleLink } from './utils';
 
-// let state = EditorState.create({schema})
-// let view = new EditorView(document.body, {state})
+const INJECTCSS = 'injectCSSID';
 
 class EasyEditor extends React.Component {
     constructor(props) {
@@ -62,8 +61,8 @@ class EasyEditor extends React.Component {
     }
 
     initCSS() {
-        if (this.editable) injectCSS(this.options.injectEditableCSS, 'injectCSSID');
-        else injectCSS(this.options.injectPreviewCSS, 'injectCSSID');
+        if (this.editable) injectCSS(this.options.injectEditableCSS, INJECTCSS);
+        else injectCSS(this.options.injectPreviewCSS, INJECTCSS);
     }
 
     initState() {
