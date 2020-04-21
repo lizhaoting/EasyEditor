@@ -3,6 +3,8 @@ import React from 'react';
 import { schema } from "easy-editor-core/prosemirror-schema-basic";
 import { EditorState } from "easy-editor-core/prosemirror-state";
 import { EditorView } from "easy-editor-core/prosemirror-view";
+import { keymap } from "easy-editor-core/prosemirror-keymap"
+import { baseKeymap } from "easy-editor-core/prosemirror-commands"
 
 import { defaultOptions } from 'easy-editor-utils';
 
@@ -18,6 +20,9 @@ class EasyEditor extends React.Component {
 
         // create ref as container
         this.editorRef = React.createRef();
+
+        // init plugins
+        this.plugins = this.initPlugins();
 
         // init state from props or default
         this.state = this.initState();
@@ -60,23 +65,30 @@ class EasyEditor extends React.Component {
         if (this.options.injectEditableCSS || this.options.injectPreviewCSS) this.initCSS();
     }
 
+    initPlugins() {
+        return [
+            keymap(baseKeymap)
+        ]
+    }
+
     initCSS() {
         if (this.editable) injectCSS(this.options.injectEditableCSS, INJECTCSS);
         else injectCSS(this.options.injectPreviewCSS, INJECTCSS);
     }
 
     initState() {
-        return EditorState.create({ schema });
+        return EditorState.create({
+            schema,
+            plugins: [
+                ...this.plugins
+            ]
+        });
     }
 
     initView() {
         return new EditorView(null, {
             state: this.state
         });
-    }
-
-    getEditable() {
-        return this.view.editable;
     }
 
     getHTML() {}

@@ -29,10 +29,12 @@
     "@babel/node": "^7.8.4",
     "@babel/preset-env": "^7.8.4",
     "@babel/preset-react": "7.0.0-beta.40",
+    "acorn": "7.1.1",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^3.2.0",
+    "minimist": "1.2.3",
     "orderedmap": "^1.1.1",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
@@ -45,10 +47,9 @@
     "vue-loader": "^15.9.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.11",
+    "w3c-keyname": "^2.2.4",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3",
-    "acorn": "7.1.1",
-    "minimist": "1.2.3"
+    "webpack-dev-server": "^3.10.3"
   }
 }

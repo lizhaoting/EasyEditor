@@ -18,6 +18,8 @@
 
 - `console help 处理成链式调用`
 
+- `添加默认的keymap，并暴露方法给开发者自行调用，而且提供执行前后钩子`
+
 ```js
 const banner = `
     /*!
