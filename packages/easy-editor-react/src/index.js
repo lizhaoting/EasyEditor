@@ -3,14 +3,19 @@ import React from 'react';
 import { schema } from "easy-editor-core/prosemirror-schema-basic";
 import { EditorState } from "easy-editor-core/prosemirror-state";
 import { EditorView } from "easy-editor-core/prosemirror-view";
-import { keymap } from "easy-editor-core/prosemirror-keymap"
-import { baseKeymap } from "easy-editor-core/prosemirror-commands"
+import { keymap } from "easy-editor-core/prosemirror-keymap";
+import { baseKeymap } from "easy-editor-core/prosemirror-commands";
 
-import { defaultOptions } from 'easy-editor-utils';
+import {
+    defaultOptions,
+    defaultKeyMapHook
+} from 'easy-editor-utils';
 
 import { injectCSS, removeStyleLink } from './utils';
 
 const INJECTCSS = 'injectCSSID';
+
+console.log('defaultKeyMapHook', defaultKeyMapHook)
 
 class EasyEditor extends React.Component {
     constructor(props) {
@@ -67,7 +72,7 @@ class EasyEditor extends React.Component {
 
     initPlugins() {
         return [
-            keymap(baseKeymap)
+            defaultKeyMapHook
         ]
     }
 
