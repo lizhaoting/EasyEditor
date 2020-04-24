@@ -8,10 +8,10 @@ import { baseKeymap } from "easy-editor-core/prosemirror-commands";
 
 import {
     defaultOptions,
-    defaultKeyMapHook
+    defaultKeyMapHook,
+    injectCSS,
+    removeStyleLink
 } from 'easy-editor-utils';
-
-import { injectCSS, removeStyleLink } from './utils';
 
 const INJECTCSS = 'injectCSSID';
 

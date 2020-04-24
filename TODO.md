@@ -28,6 +28,10 @@
 
 - `提供一个开关展示每一个事务transtration`
 
+- `增加eslint，react标准airbnb`
+
+- `增加全局的粘贴事件拦截`
+
 ```js
 const banner = `
     /*!

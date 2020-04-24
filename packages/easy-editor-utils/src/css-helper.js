@@ -3,7 +3,7 @@ export const removeStyleLink = function (linkID) {
     if (styleLink) styleLink.remove();
 }
 
-export const injectCSS = function (css, id = '') {
+export const injectCSS = (css, id = '') => {
     removeStyleLink('injectCSSID');
     console.group('%c inject css', 'color: #329FD9');
     console.log(css);
