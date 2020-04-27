@@ -71,8 +71,9 @@ class EasyEditor extends React.Component {
     }
 
     initPlugins() {
+        const { beforeCommandsHook, afterCommandsHook } = this.options;
         return [
-            defaultKeyMapHook
+            defaultKeyMapHook(beforeCommandsHook, afterCommandsHook)
         ]
     }
 

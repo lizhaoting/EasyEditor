@@ -2,5 +2,7 @@ export default {
     autoFocus: false,
     viewInstance: () => {},
     injectEditableCSS: '',
-    injectPreviewCSS: ''
+    injectPreviewCSS: '',
+    beforeCommandsHook: () => {},
+    afterCommandsHook: () => {},
 }

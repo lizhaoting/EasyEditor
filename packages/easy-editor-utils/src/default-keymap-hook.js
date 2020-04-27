@@ -26,6 +26,47 @@ import {
 
 import { mac } from './user-agent-helper';
 
-console.log('mac', mac);
+const chainCommandsHook = (beforeHook, afterHook, ...commands) => {
+    if (typeof beforeHook === 'function') {
+        afterHook();
+    }
+    return function (state, dispatch, view) {
+        for (let i = 0; i < commands.length; i++) {
+            if (commands[i](state, dispatch, view)) return true;
+        }
+        if (typeof afterHook === 'function') {
+            afterHook(state, dispatch, view);
+        }
+        return false;
+    }
+}
 
-export default keymap(baseKeymap);
+export const backspace = chainCommands(deleteSelection, joinBackward, selectNodeBackward)
+export const del = chainCommands(deleteSelection, joinForward, selectNodeForward)
+
+export const pcBaseKeymap = {
+    "Enter": chainCommandsHook('', '', newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock),
+    "Mod-Enter": exitCode,
+    "Backspace": backspace,
+    "Mod-Backspace": backspace,
+    "Delete": del,
+    "Mod-Delete": del,
+    "Mod-a": selectAll
+}
+
+export let macBaseKeymap = {
+    "Ctrl-h": pcBaseKeymap["Backspace"],
+    "Alt-Backspace": pcBaseKeymap["Mod-Backspace"],
+    "Ctrl-d": pcBaseKeymap["Delete"],
+    "Ctrl-Alt-Backspace": pcBaseKeymap["Mod-Delete"],
+    "Alt-Delete": pcBaseKeymap["Mod-Delete"],
+    "Alt-d": pcBaseKeymap["Mod-Delete"]
+}
+
+for (let key in pcBaseKeymap) macBaseKeymap[key] = pcBaseKeymap[key]
+
+const handleComputerType = (beforeCommandsHook, afterCommandsHook) => {
+    return mac ? keymap(macBaseKeymap) : keymap(pcBaseKeymap);
+}
+
+export default handleComputerType;
