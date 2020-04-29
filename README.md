@@ -82,9 +82,9 @@ export default () => <EasyEditor {...options} />
         - dispatch - Dispatch function
         - view - Current Editor view model
         - commands - Support keybord event
-        
-            - selectAll,
-            - exitCode,
-            - backspace,
-            - del,
+
+            - selectAll
+            - exitCode
+            - backspace
+            - del
             - enter

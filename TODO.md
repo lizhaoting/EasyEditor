@@ -1,4 +1,5 @@
 ## `TODO LIST`
+- `中文文档！！！！！`
 
 - `优化npm run build加载es6方式`
 
@@ -33,6 +34,8 @@
 - `增加全局的粘贴事件拦截`
 
 - `beforeHook调用del失效`
+
+- `afterHook文档`
 
 ```js
 const banner = `
