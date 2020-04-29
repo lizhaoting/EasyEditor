@@ -13,7 +13,14 @@ const options = {
     autoFocus: true,
     viewInstance: (view) => {
         console.log('react view', view);
-    }
+    },
+    beforeCommandsHook: (state, dispatch, view, commands) => {
+        commands.selectAll(state, dispatch, view);
+        return false;
+    },
+    afterCommandsHook: (state, dispatch, view, currentCommands) => {
+        console.log('afterCommandsHook', state, dispatch, view, currentCommands);
+    },
 }
 
 export default () => <EasyEditor {...options} />
@@ -60,3 +67,24 @@ export default () => <EasyEditor {...options} />
     - editable - Can editor or not
 
     - ......
+
+- beforeCommandsHook - Action before exec current keybord event
+    ```javascript
+    (state, dispatch, view, commands) => {
+        commands.selectAll(state, dispatch, view);
+        return false;
+    }
+    ```
+    - return - Return true will continue current keybord event
+
+    - params
+        - state - Current Editor state
+        - dispatch - Dispatch function
+        - view - Current Editor view model
+        - commands - Support keybord event
+        
+            - selectAll,
+            - exitCode,
+            - backspace,
+            - del,
+            - enter

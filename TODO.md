@@ -32,6 +32,8 @@
 
 - `增加全局的粘贴事件拦截`
 
+- `beforeHook调用del失效`
+
 ```js
 const banner = `
     /*!

@@ -26,26 +26,47 @@ import {
 
 import { mac } from './user-agent-helper';
 
-const chainCommandsHook = (beforeHook, afterHook, ...commands) => {
-    if (typeof beforeHook === 'function') {
-        afterHook();
-    }
+let beforeHook = undefined;
+let afterHook = undefined;
+
+const chainCommandsHook = (...commands) => {
     return function (state, dispatch, view) {
-        for (let i = 0; i < commands.length; i++) {
-            if (commands[i](state, dispatch, view)) return true;
+        // before
+        if (typeof beforeHook === 'function') {
+            // debugger
+            const status = beforeHook(state, dispatch, view, currentCommands);
+            // if beforeHook return false
+            // stop current command
+            if (!status) return false;
         }
-        if (typeof afterHook === 'function') {
-            afterHook(state, dispatch, view);
+        // commands
+        for (let i = 0; i < commands.length; i++) {
+            if (commands[i](state, dispatch, view)) {
+                // after
+                if (typeof afterHook === 'function') {
+                    afterHook(state, dispatch, view, currentCommands);
+                }
+                return true;
+            }
         }
         return false;
     }
 }
 
-export const backspace = chainCommands(deleteSelection, joinBackward, selectNodeBackward)
-export const del = chainCommands(deleteSelection, joinForward, selectNodeForward)
+export const backspace = chainCommands(deleteSelection, joinBackward, selectNodeBackward);
+export const del = chainCommands(deleteSelection, joinForward, selectNodeForward);
+export const enter = chainCommands(newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock);
+
+export const currentCommands = {
+    selectAll,
+    exitCode,
+    backspace,
+    del,
+    enter: chainCommands(newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock)
+};
 
 export const pcBaseKeymap = {
-    "Enter": chainCommandsHook('', '', newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock),
+    "Enter": chainCommandsHook(newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock),
     "Mod-Enter": exitCode,
     "Backspace": backspace,
     "Mod-Backspace": backspace,
@@ -55,17 +76,18 @@ export const pcBaseKeymap = {
 }
 
 export let macBaseKeymap = {
-    "Ctrl-h": pcBaseKeymap["Backspace"],
-    "Alt-Backspace": pcBaseKeymap["Mod-Backspace"],
-    "Ctrl-d": pcBaseKeymap["Delete"],
-    "Ctrl-Alt-Backspace": pcBaseKeymap["Mod-Delete"],
-    "Alt-Delete": pcBaseKeymap["Mod-Delete"],
-    "Alt-d": pcBaseKeymap["Mod-Delete"]
+    "Ctrl-h": backspace,
+    "Alt-Backspace": backspace,
+    "Ctrl-d": del,
+    "Ctrl-Alt-Backspace": del,
+    "Alt-Delete": del,
+    "Alt-d": del,
+    ...pcBaseKeymap
 }
 
-for (let key in pcBaseKeymap) macBaseKeymap[key] = pcBaseKeymap[key]
-
 const handleComputerType = (beforeCommandsHook, afterCommandsHook) => {
+    beforeHook = beforeCommandsHook;
+    afterHook = afterCommandsHook;
     return mac ? keymap(macBaseKeymap) : keymap(pcBaseKeymap);
 }
 

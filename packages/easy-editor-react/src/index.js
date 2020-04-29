@@ -15,8 +15,6 @@ import {
 
 const INJECTCSS = 'injectCSSID';
 
-console.log('defaultKeyMapHook', defaultKeyMapHook)
-
 class EasyEditor extends React.Component {
     constructor(props) {
         super(props)

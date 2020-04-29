@@ -14,6 +14,13 @@ const options = {
             padding: 8px
         }
     `,
+    beforeCommandsHook: (state, dispatch, view, commands) => {
+        commands.selectAll(state, dispatch, view);
+        return false;
+    },
+    afterCommandsHook: (state, dispatch, view, currentCommands) => {
+        console.log('afterCommandsHook', state, dispatch, view, currentCommands);
+    },
 }
 
 export default () => <div>
