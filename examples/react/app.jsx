@@ -16,9 +16,10 @@ const options = {
     `,
     beforeCommandsHook: (state, dispatch, view, commands) => {
         commands.selectAll(state, dispatch, view);
-        return false;
+        return true;
     },
-    afterCommandsHook: (state, dispatch, view, currentCommands) => {
+    afterCommandsHook: (state, dispatch, view, commands) => {
+        commands.selectAll(state, dispatch, view);
         console.log('afterCommandsHook', state, dispatch, view, currentCommands);
     },
 }
